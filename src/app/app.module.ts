@@ -11,9 +11,10 @@ import { provideHttpClient } from '@angular/common/http';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { ToastrModule } from 'ngx-toastr';
 import { provideToastr } from 'ngx-toastr';
+import { API_URL } from './services/constants';
 
 const config: SocketIoConfig = {
-	url: 'http://localhost:3001', options: {
+	url: API_URL, options: {
 		path: '',
 		reconnectionAttempts: 4,
 		autoConnect: true,
