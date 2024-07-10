@@ -1,0 +1,51 @@
+<div class="row">
+	<app-breadcrumb [showBackButton]="false" [title]="title" [items]="['Dashboard','Home']"></app-breadcrumb>
+	
+	<div class="grid grid-cols-1 gap-1 mt-1 md:mt-4 md:!gap-5 lg:!gap-10  xl:!gap-20 md:grid-cols-3">
+		<app-card [showHeader]="false" blockClass="pc-component !p-0" cardClass="!overflow-hidden">
+			<span class="currency-logo">$</span>
+			<div class="px-3 pt-3 md:!p-5">
+				<h3 class="font-normal ">USD Balance</h3>
+				<h3>{{userBalance['USD']}} $</h3>
+			</div>
+			<div class="p-3 mt-2 text-center md:!mt-5 bg-sky-50" mat-ripple>
+				<a class="!text-sky-500 font-medium">View transactions</a>
+			</div>
+		</app-card>
+		<app-card [showHeader]="false" blockClass="pc-component !p-0" cardClass="!overflow-hidden">
+			<span class="currency-logo">€</span>
+			<div class="px-3 pt-3 md:!p-5">
+				<h3 class="font-normal ">EUR Balance</h3>
+				<h3>
+					<h3>{{userBalance['EUR']}} €</h3>
+				</h3>
+			</div>
+			<div class="p-3 mt-2 text-center md:!mt-5 bg-sky-50" mat-ripple>
+				<a class="!text-sky-500 font-medium">View transactions</a>
+			</div>
+		</app-card>
+		<app-card [showHeader]="false" blockClass="pc-component !p-0" cardClass="!overflow-hidden">
+			<span class="currency-logo">₿</span>
+			<div class="px-3 pt-3 md:!p-5">
+				<h3 class="font-normal ">BTC Balance</h3>
+				<h3>{{userBalance['BTC'] ?? 0}} ₿</h3>
+			</div>
+
+			<div class="p-3 mt-2 text-center md:!mt-5 bg-sky-50" mat-ripple>
+				<a class="!text-sky-500 font-medium">View transactions</a>
+			</div>
+		</app-card>
+	</div>
+
+	<div class="w-full mt-5">
+		<div class="flex flex-col justify-between text-center md:flex-row">
+			<h3>Your latest 5 payments</h3>
+			<a [routerLink]="['/create-payment-request']">
+				<button class="w-full" mat-flat-button>Create payment request</button>
+			</a>
+		</div>
+		<div class="my-4">
+			<app-payments-table [isAdminTable]="false" [showPagination]="false" />
+		</div>
+	</div>
+</div>

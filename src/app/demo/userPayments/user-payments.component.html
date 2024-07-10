@@ -1,0 +1,14 @@
+<div class="row">
+	<div class="flex flex-col justify-between md:items-center md:flex-row">
+		<app-breadcrumb title="Review all your payments requests"
+		[items]="['Dashboard','Your Payments']"></app-breadcrumb>
+
+		<a [routerLink]="['/create-payment-request']">
+			<button class="w-full mb-4 whitespace-nowrap" mat-raised-button>Create payment request</button>
+		</a>
+	</div>
+
+	<div class="col-sm-12">
+		<app-payments-table id="user-table" [isAdminTable]="false" />
+	</div>
+</div>

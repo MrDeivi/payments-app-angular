@@ -1,0 +1,46 @@
+.card {
+	.card-body.dashboard-card {
+		padding: 18px;
+		padding-bottom: 20px;
+	}
+}
+
+.user-group {
+	img {
+		position: relative;
+		width: 35px;
+		height: 35px;
+		border-radius: 50%;
+		z-index: 2;
+		transition: all 0.1s ease-in-out;
+		border: 2px solid var(--bs-white);
+
+		+img {
+			margin-left: -14px;
+		}
+
+		&:hover {
+			z-index: 5;
+		}
+	}
+}
+
+.badge-circle {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+}
+
+.currency-logo {
+	font-size: 6rem;
+	position: absolute;
+	right: 2rem;
+	top: 0rem;
+	opacity: .4;
+	color: skyblue;
+
+	@media(max-width: 500px) {
+		font-size: 3rem;
+	}
+}

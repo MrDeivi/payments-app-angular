@@ -1,0 +1,45 @@
+<app-card [showHeader]="false" blockClass="pc-component">
+	<app-absolute-loader *ngIf="loading" />
+
+	<table mat-table [dataSource]="elements">
+
+		<ng-container matColumnDef="id">
+			<th mat-header-cell *matHeaderCellDef> Id </th>
+			<td mat-cell *matCellDef="let element"> {{element.id}} </td>
+		</ng-container>
+		<ng-container matColumnDef="name">
+			<th mat-header-cell *matHeaderCellDef> Name </th>
+			<td mat-cell *matCellDef="let element"> {{element.name}} </td>
+		</ng-container>
+
+		<ng-container matColumnDef="email">
+			<th mat-header-cell *matHeaderCellDef> Email </th>
+			<td mat-cell *matCellDef="let element"> {{element.email}} </td>
+		</ng-container>
+		<ng-container matColumnDef="createdAt">
+			<th mat-header-cell *matHeaderCellDef> Date </th>
+			<td mat-cell *matCellDef="let element"> {{element.createdAt | date:'medium' }} </td>
+		</ng-container>
+
+		<ng-container matColumnDef="roles">
+			<th mat-header-cell *matHeaderCellDef> Roles </th>
+			<td mat-cell *matCellDef="let element"> {{getRoles(element.roles) }} </td>
+		</ng-container>
+
+
+
+		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+	</table>
+
+
+	<div *ngIf="showPagination" class="flex items-center justify-end mt-5">
+		<button (click)="getData()" mat-icon-button aria-label="Refresh">
+			<mat-icon>refresh-rounded</mat-icon>
+		</button>
+		<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons [pageSize]="paginationDto.limit"
+			[length]="pagination?.totalElements" [pageIndex]="paginationDto.page-1" (page)="changePage($event)"
+			aria-label="Select page of periodic elements">
+		</mat-paginator>
+	</div>
+</app-card>

@@ -1,0 +1,73 @@
+<div class="row">
+	<app-breadcrumb title="Payment detail" [items]="['Dashboard','Payment detail']"></app-breadcrumb>
+
+	<app-card [showHeader]="false" blockClass="pc-component">
+		<app-absolute-loader *ngIf="loading" />
+
+		<div *ngIf="payment" class="">
+			<div>
+				<div class="px-4 sm:px-0">
+					<h3 class="text-base font-semibold leading-7 text-gray-800">Payment Information</h3>
+				</div>
+				<div class="mt-6 border-t border-gray-100">
+					<dl class="divide-y divide-gray-100">
+						<div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+							<dt class="text-lg font-medium leading-6 text-gray-800">Payment Id</dt>
+							<dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{payment._id}}</dd>
+						</div>
+						<div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+							<dt class="text-lg font-medium leading-6 text-gray-800">Payment Method</dt>
+							<dd class="flex items-center mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+								{{payment.paymentMethod}}
+								<img [src]="images[payment.paymentMethod]" width="70" alt="" class="ml-5">
+							</dd>
+						</div>
+						<div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+							<dt class="text-lg font-medium leading-6 text-gray-800">Payment status</dt>
+							<dd class="mt-1 text-lg leading-6 text-gray-900 sm:col-span-2 sm:mt-0">
+								<div class="px-3 py-1 rounded-full w-max " [ngClass]="{
+									'bg-emerald-200': payment.status =='success',
+									'bg-red-200': payment.status == 'failed',
+									'bg-sky-200': payment.status == 'queued',
+									'bg-gray-200': payment.status == 'pending'
+								  }">
+									{{payment.status}}
+								</div>
+							</dd>
+						</div>
+						<div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+							<dt class="text-lg font-medium leading-6 text-gray-800">Amount</dt>
+							<dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{payment.amount}}
+								{{symbols[payment.currency]}}</dd>
+						</div>
+						<div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+							<dt class="text-lg font-medium leading-6 text-gray-800">Currency</dt>
+							<dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{payment.currency}}
+							</dd>
+						</div>
+						<div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+							<dt class="text-lg font-medium leading-6 text-gray-800">User</dt>
+							<dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{payment.user.name}}
+							</dd>
+						</div>
+						<div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+							<dt class="text-lg font-medium leading-6 text-gray-800">Request date</dt>
+							<dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+								{{payment.createdAt | date:'medium' }}
+							</dd>
+						</div>
+						<div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+							<dt class="text-lg font-medium leading-6 text-gray-800">Proccesed date</dt>
+							<dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+								{{payment.updatedAt | date:'medium' }}
+							</dd>
+						</div>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</app-card>
+
+
+
+</div>

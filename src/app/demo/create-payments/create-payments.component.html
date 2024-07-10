@@ -1,0 +1,132 @@
+<div class="w-full mx-auto md:w-2/3">
+	<app-breadcrumb title="Let's create a new payment request"
+		[items]="['Dashboard','Create payments request']"></app-breadcrumb>
+
+	<app-card [showHeader]="false" blockClass="pc-component" >
+		<app-absolute-loader *ngIf="loading" />
+
+		<mat-stepper [linear]="true" #stepper>
+			<mat-step label="Select the payment method">
+				<!-- TODO: Improve this into components -->
+				<div class="flex flex-col mt-3">
+					<form class="grid grid-cols-1 p-2 md:grid-cols-2 gap-7 md:gap-10">
+						<div (click)="input.paymentMethod = 'Credit Card'"
+							[ngClass]="{'!ring-2 !ring-sky-600': input.paymentMethod === 'Credit Card'}"
+							class="p-2 leading-5 bg-white border rounded-lg cursor-pointer  md:!p-4 ring-gray-200 ring-1 hover:bg-slate-50 "
+							mat-ripple>
+							<div class="flex justify-between">
+								<div class="text-lg font-medium text-slate-900">Credit Card</div>
+								<img src="assets/images/credit-card.svg" alt="Credit Card"
+									class="payment-method__method-logo payment-method__method-logo-img">
+							</div>
+						</div>
+
+						<div (click)="input.paymentMethod = 'Paypal'"
+							[ngClass]="{'!ring-2 !ring-sky-600': input.paymentMethod === 'Paypal'}"
+							class="p-2 leading-5 bg-white border rounded-lg cursor-pointer  md:!p-4 ring-gray-200 ring-1 hover:bg-slate-50 "
+							mat-ripple>
+							<div class="flex justify-between">
+								<div class="text-lg font-medium text-slate-900">Paypal</div>
+								<img src="assets/images/paypal.svg" alt="Paypal"
+									class="payment-method__method-logo payment-method__method-logo-img">
+							</div>
+						</div>
+						<div (click)="input.paymentMethod = 'Google Pay'"
+							[ngClass]="{'!ring-2 !ring-sky-600': input.paymentMethod === 'Google Pay'}"
+							class="p-2 leading-5 bg-white border rounded-lg cursor-pointer  md:!p-4 ring-gray-200 ring-1 hover:bg-slate-50 "
+							mat-ripple>
+							<div class="flex justify-between">
+								<div class="text-lg font-medium text-slate-900">Google Pay</div>
+								<img src="assets/images/googlepay.svg" alt="Paypal"
+									class="payment-method__method-logo payment-method__method-logo-img">
+							</div>
+						</div>
+						<div (click)="input.paymentMethod = 'Coingate'"
+							[ngClass]="{'!ring-2 !ring-sky-600': input.paymentMethod === 'Coingate'}"
+							class="p-2 leading-5 bg-white border rounded-lg cursor-pointer  md:!p-4 ring-gray-200 ring-1 hover:bg-slate-50 "
+							mat-ripple>
+							<div class="flex justify-between">
+								<div class="text-lg font-medium text-slate-900">Coingate</div>
+								<img src="assets/images/coingate.svg" alt="Paypal"
+									class="payment-method__method-logo payment-method__method-logo-img">
+							</div>
+						</div>
+					</form>
+					<div class="mt-4 ml-auto">
+						<button mat-flat-button matStepperNext [disabled]="!input.paymentMethod">Next</button>
+					</div>
+				</div>
+			</mat-step>
+			<mat-step label="Fill the amount and currency">
+				<div class="flex flex-col mt-3">
+					<h5>Select the currency:</h5>
+					<form class="grid grid-cols-3 p-2 gap-7 md:gap-10">
+						<div (click)="input.currency = 'EUR'"
+							[ngClass]="{'!ring-2 !ring-sky-600': input.currency === 'EUR'}"
+							class="p-2 leading-5 bg-white border rounded-lg cursor-pointer  md:!p-4 ring-gray-200 ring-1 hover:bg-slate-50 "
+							mat-ripple>
+							<div class="flex justify-between">
+								<div class="text-lg font-medium text-slate-900">Euros</div>
+							</div>
+						</div>
+
+						<div (click)="input.currency = 'USD'"
+							[ngClass]="{'!ring-2 !ring-sky-600': input.currency === 'USD'}"
+							class="p-2 leading-5 bg-white border rounded-lg cursor-pointer md:!p-4 ring-gray-200 ring-1 hover:bg-slate-50 "
+							mat-ripple>
+							<div class="flex justify-between">
+								<div class="text-lg font-medium text-slate-900">USD</div>
+							</div>
+						</div>
+
+						<div (click)="input.currency = 'BTC'"
+							[ngClass]="{'!ring-2 !ring-sky-600': input.currency === 'BTC'}"
+							class="p-2 leading-5 bg-white border rounded-lg cursor-pointer  md:!p-4 ring-gray-200 ring-1 hover:bg-slate-50 "
+							mat-ripple>
+							<div class="flex justify-between">
+								<div class="text-lg font-medium text-slate-900">BTC</div>
+							</div>
+						</div>
+
+					</form>
+
+					<div class="flex flex-col mt-5 md:flex-row md:space-x-7">
+						<div class="w-full md:w-1/2">
+							<h5>Fill the amount:</h5>
+							<mat-form-field class="w-full">
+								<mat-label>Amount</mat-label>
+								<input matInput [max]="userBalance[input.currency] ?? 0" type="number"
+									placeholder="Amount" [(ngModel)]="input.amount">
+								<mat-error>Insuficient balance</mat-error>
+							</mat-form-field>
+						</div>
+						<div class="w-full px-4 py-2 border-2 border-gray-200 border-dashed md:w-max h-min rounded-xl bg-sky-50">
+							<h5>Your {{input.currency}} Balance:</h5>
+							<h2>{{userBalance[input.currency] ?? 0}} {{symbols[input.currency]}}</h2>
+						</div>
+					</div>
+
+					<div class="flex items-center justify-between mt-4">
+						<button mat-flat-button matStepperPrev>Prev</button>
+						<button mat-flat-button (click)="create()"
+							[disabled]="!input.currency || !input.amount || input.amount<0">Next</button>
+					</div>
+				</div>
+			</mat-step>
+			<mat-step>
+				<ng-template matStepLabel>Done</ng-template>
+				<div class="p-3 my-10 border-l-4 text-emerald-700 bg-emerald-100 border-emerald-500 rounded-xl"
+					role="alert">
+					<p class="mb-0 font-bold">The payment was created successfully</p>
+					<p class="mb-0">The payment is being proccesed. It'll take a few seconds to complete</p>
+				</div>
+
+				<button mat-flat-button [routerLink]="['/user-payments']">View my payments</button>
+			</mat-step>
+		</mat-stepper>
+	</app-card>
+	<div class="p-3 text-orange-700 bg-orange-100 border-l-4 border-orange-500 rounded-xl" role="alert">
+		<p class="mb-0 font-bold">Info</p>
+		<p class="mb-0">This is only for test puposes. Select anything and test the app</p>
+	</div>
+</div>

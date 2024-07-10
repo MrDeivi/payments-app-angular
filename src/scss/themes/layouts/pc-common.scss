@@ -1,0 +1,48 @@
+body {
+	background-color: #f3f9fc;
+}
+
+.pc-container {
+	$temp: $header-height + 53;
+	position: relative;
+	top: $header-height;
+	margin-left: $sidebar-width;
+	min-height: calc(100vh - 60px);
+	background: #f3f9fc;
+
+	.coded-content {
+		background-color: #1890ff;
+		padding-left: 48px;
+		padding-right: 48px;
+		// padding-top: 24px;
+		height: 16rem;
+		max-height: 16rem;
+
+		@include media-breakpoint-down(xl) {
+			&.container {
+				max-width: 100%;
+			}
+		}
+
+		@include media-breakpoint-down(md) {
+			height: 11rem;
+			max-height: 11rem;
+			padding-left: 12px;
+			padding-right: 12px;
+			padding-top: 16px;
+		}
+	}
+
+	.page-header+.row {
+		padding-top: 24px;
+	}
+
+	.page-header+.coded-content {
+		padding-top: calc(30px + 55px);
+	}
+
+	@media (max-width: 1024px) {
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+}
