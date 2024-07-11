@@ -7,7 +7,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { lastValueFrom } from 'rxjs';
 import { AbsoluteLoaderComponent } from 'src/app/components/absolute-loader/absolute-loader.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuthStore } from 'src/app/store/auth.store';
