@@ -23,7 +23,7 @@ export class NavigationComponent {
   }
 
   navCollapseMob() {
-    if (this.windowWidth < 1025) {
+	  if (this.windowWidth < 1025) {
       this.NavCollapsedMob.emit();
     }
   }

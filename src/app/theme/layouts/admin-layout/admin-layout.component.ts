@@ -18,13 +18,13 @@ export class AdminComponent {
   navCollapsed: boolean;
   navCollapsedMob: boolean;
 
-  navMobClick() {
+	navMobClick() {
     if (this.navCollapsedMob && !document.querySelector('app-navigation.pc-sidebar')?.classList.contains('mob-open')) {
-      this.navCollapsedMob = !this.navCollapsedMob;
+      this.navCollapsedMob = false;
       setTimeout(() => {
-        this.navCollapsedMob = !this.navCollapsedMob;
+        this.navCollapsedMob = true;
       }, 100);
-    } else {
+	} else {
       this.navCollapsedMob = !this.navCollapsedMob;
     }
     if (document.querySelector('app-navigation.pc-sidebar')?.classList.contains('navbar-collapsed')) {
