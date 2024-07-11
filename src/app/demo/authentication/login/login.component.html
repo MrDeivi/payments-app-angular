@@ -26,7 +26,6 @@
 						<mat-form-field appearance="fill" class="w-full">
 							<mat-label>Password</mat-label>
 							<input matInput placeholder="Enter your password" formControlName="password">
-							<input matInput placeholder="Enter your password">
 							<mat-error *ngIf="password.hasError('required')">Password is required.</mat-error>
 							<mat-error *ngIf="password.hasError('minlength')">Minimum length is 8.</mat-error>
 						</mat-form-field>
